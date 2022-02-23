@@ -1,0 +1,32 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "bootstrap";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+/**
+ * Links
+ */
+a {
+  color: gray;
+  text-decoration: none;
+
+  &:visited {
+    color: darken(gray, 15%);
+  }
+
+  &:hover {
+    color: $text-color;
+    text-decoration: underline;
+  }
+
+  .masthead &:hover {
+      text-decoration: none;
+  }
+}
+
