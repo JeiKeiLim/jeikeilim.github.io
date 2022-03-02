@@ -131,3 +131,9 @@ utterances:
   issue-term:          "pathname"
   label:               "Comments"
   theme:               "github-light"
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-154754490-2"
+    anonymize_ip: false # default

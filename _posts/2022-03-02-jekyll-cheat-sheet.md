@@ -7,6 +7,7 @@ tags:
   - Jekyll
   - minimal-mistakes
   - MarkDown
+  - CheatSheet
 toc: true
 toc_sticky: true
 ---
