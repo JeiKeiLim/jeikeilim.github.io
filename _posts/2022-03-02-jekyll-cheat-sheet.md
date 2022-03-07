@@ -1,6 +1,6 @@
 ---
 title: "Jekyll Cheat Sheet 모음"
-last_modified_at: 2022-03-02T09:47
+last_modified_at: 2022-03-07T13:59
 categories:
   - Blog
 tags:
@@ -32,6 +32,17 @@ Jekyll 로 블로그 글을 작성하면서 자주 쓰게 되는 Markdown 문법
     alt="Kindle" 
     caption="This is a caption of the fire image"
 %}
+
+## Image width adjustment
+
+```md
+![Stack vertical](/assets/images/kindle.jpg){: width="10%"}
+![Stack vertical](/assets/images/kindle.jpg){: width="25%"}
+![Stack vertical](/assets/images/kindle.jpg){: width="50%"}
+```
+![Stack vertical](/assets/images/kindle.jpg){: width="10%"}
+![Stack vertical](/assets/images/kindle.jpg){: width="25%"}
+![Stack vertical](/assets/images/kindle.jpg){: width="50%"}
 
 
 # Text
