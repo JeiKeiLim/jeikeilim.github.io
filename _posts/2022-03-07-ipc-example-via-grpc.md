@@ -174,5 +174,5 @@ name: "Jongkuk Lim"
 email: "lim.jeikei@gmail.com"
 ```
 
-You can find demo repository in [https://github.com/JeiKeiLim/protobuf-ipc-example](https://github.com/JeiKeiLim/protobuf-ipc-example).
+You can find demo repository in [https://github.com/JeiKeiLim/protobuf-ipc-example](https://github.com/JeiKeiLim/protobuf-ipc-example){:target='_blank'}
 
