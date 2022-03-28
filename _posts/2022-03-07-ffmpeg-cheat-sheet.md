@@ -61,8 +61,15 @@ ffmpeg -i <input> -filter:v "crop=iw:ih-20:0:ih" <output>
 ```python
 ffmpeg -i input.mkv -filter:v "setpts=0.5*PTS" output.mk
 ```
-
 (0.5 - 조절하는 속도 (2배속))
+
+* Audio 가 있는 경우
+```python
+ffmpeg -i input.mkv -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" output.mkv
+```
+
+(0.5 - 영상 속도 (2배속))
+(2.0 - 오디오 속도 (2배속))
 
 ### 1.2.2 Video stack vertically
 
