@@ -114,6 +114,15 @@ ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p
 ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -i my_movie.m3u8 -c copy my_movie.mp4
 ```
 
+### 1.2.9. Using GPU
+
+```python
+ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.MOV -c:v h264_nvenc -b:v 10240k output.mp4
+```
+
+- Use `ffmpeg -hwaccels` to check supported hardware
+
+
 # 2. GIF
 
 ## 2.1 Basic
@@ -125,40 +134,6 @@ ffmpeg -ss 0 -t 12 -i input.mov -vf "fps=2,scale=2048:-1:flags=lanczos,split[s0]
 ss - 시작 지점
 
 - t 끝나는 지점
-
-fps - 프레임 속도
-
-scale = 가로 해상도:세로 해상도
-
-## 2.2 Multiple Images to gif
-
-```python
-ffmpeg -f image2 -i %02d.png -vf scale=900:-1:sws_dither=ed,palettegen palette.png
-ffmpeg -f image2 -framerate 2 -i %02d.png video.flv
-ffmpeg -i video.flv -i palette.png -filter_complex "fps=2,scale=430:-1:flags=lanczos[x];[x][1:v]paletteuse" out.gif
-
-rm video.flv palette.png
-```
-
-### 1.2.8. Using GPU
-
-```python
-ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.MOV -c:v h264_nvenc -b:v 10240k output.mp4
-```
-
-- Use `ffmpeg -hwaccels` to check supported hardware
-
-# 2. GIF
-
-## 2.1 Basic
-
-```python
-ffmpeg -ss 0 -t 12 -i input.mov -vf "fps=2,scale=2048:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
-```
-
-ss - 시작 지점
-
--t  끝나는 지점
 
 fps - 프레임 속도
 
