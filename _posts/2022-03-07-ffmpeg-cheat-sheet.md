@@ -2,7 +2,7 @@
 title: "FFMPEG cheat sheets"
 last_modified_at: 2022-03-07T13:47
 categories:
-  - Blog
+  - Cheatsheet
 tags:
   - ffmpeg
   - Video

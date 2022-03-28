@@ -2,7 +2,7 @@
 title: "Jekyll Cheat Sheet 모음"
 last_modified_at: 2022-03-07T13:59
 categories:
-  - Blog
+  - Cheatsheet
 tags:
   - Jekyll
   - minimal-mistakes

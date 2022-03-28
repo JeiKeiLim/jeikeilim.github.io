@@ -2,7 +2,7 @@
 title: "How to build IPC communication using Protobuf and gRPC"
 last_modified_at: 2022-03-07T12:29
 categories:
-  - Blog
+  - Tech
 tags:
   - Protobuf
   - IPC
