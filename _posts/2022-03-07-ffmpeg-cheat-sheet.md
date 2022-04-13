@@ -71,7 +71,12 @@ ffmpeg -i input.mkv -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" 
 (0.5 - 영상 속도 (2배속))
 (2.0 - 오디오 속도 (2배속))
 
-### 1.2.2 Video stack vertically
+### 1.2.2 Change speed, resolution, and FPS at the same time
+```python
+ffmpeg -i input.MOV -filter_complex "fps=60,setpts=0.1*PTS,scale=640:-1;atempo=10.0" output.mp4
+```
+
+### 1.2.3 Video stack vertically
 
 ```python
 ffmpeg -i input0 -i input1 -filter_complex vstack=inputs=2 output
@@ -79,7 +84,7 @@ ffmpeg -i input0 -i input1 -filter_complex vstack=inputs=2 output
 
 ![Stack vertical](/assets/images/2022-03-07-ffmpeg-cheat-sheet/03_top_bottom.png){: width="25%"}
 
-### 1.2.3 Video stack horizontally
+### 1.2.4 Video stack horizontally
 
 ```python
 ffmpeg -i input0 -i input1 -filter_complex hstack=inputs=2 output
@@ -87,7 +92,7 @@ ffmpeg -i input0 -i input1 -filter_complex hstack=inputs=2 output
 
 ![Stack vertical](/assets/images/2022-03-07-ffmpeg-cheat-sheet/01_left_right.png){: width="50%"}
 
-### 1.2.4 Video stack with a border
+### 1.2.5 Video stack with a border
 
 ```python
 ffmpeg -i input0 -i input1 -filter_complex "[0]pad=iw+5:color=black[left];[left][1]hstack=inputs=2" output
@@ -97,31 +102,31 @@ ffmpeg -i input0 -i input1 -filter_complex "[0]pad=iw+5:color=black[left];[left]
 
 Further details can be found here [https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg](https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg){:target='_blank'}
 
-### 1.2.5 Video 2x2 grid with text
+### 1.2.6 Video 2x2 grid with text
 
 ```python
 ffmpeg -i 2019_1231_face_test.mov -i test_result_noone.mp4 -i test_result_light_DSFD.mp4 -i test_result_DSFD.mp4 -filter_complex "[0]drawtext=text='(Original)':borderw=5:bordercolor='WhiteSmoke':fontsize=100:x=w-text_w-10:y=h-text_h-20[v0]; [1]drawtext=text='(Noone video)':borderw=5:bordercolor='WhiteSmoke':fontsize=100:x=10:y=h-text_h-30[v1]; [2]drawtext=text='(lightDSFD)':borderw=5:bordercolor='WhiteSmoke':fontsize=100:x=w-text_w-10:y=20[v2]; [3]drawtext=text='(DSFD)':borderw=5:bordercolor='WhiteSmoke':fontsize=100:x=10:y=20[v3]; [v0][v1][v2][v3]xstack=inputs=4:layout=0_0|w0_0|0_h0|w0_h0[v]" -map "[v]" output_grid.mp4
 ```
 
-### 1.2.6 Create Images from Video
+### 1.2.7 Create Images from Video
 
 ```python
 ffmpeg -i <input> -filter:v fps=1 <output%03d.jpg>
 ```
 
-### 1.2.7. Create Video from Images
+### 1.2.8. Create Video from Images
 
 ```python
 ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p out.mp4
 ```
 
-### 1.2.8. Download m3u8 playlist video
+### 1.2.9. Download m3u8 playlist video
 
 ```python
 ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -i my_movie.m3u8 -c copy my_movie.mp4
 ```
 
-### 1.2.9. Using GPU
+### 1.2.10. Using GPU
 
 ```python
 ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.MOV -c:v h264_nvenc -b:v 10240k output.mp4
