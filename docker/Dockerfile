@@ -47,5 +47,8 @@ RUN echo '# Install Ruby Gems to ~/gems' >> ~/.zshrc && \
     echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.zshrc
 
 # Install jekyll
-RUN /bin/bash -ilc "gem install bundler jekyll github-pages tzinfo-data jekyll-algolia"
+RUN /bin/bash -lic "gem install jekyll -v 4.2.2"
+RUN /bin/bash -ilc "gem install bundler github-pages tzinfo-data jekyll-algolia"
+COPY Gemfile /home/user/Gemfile
+RUN /bin/bash -lic "bundle install && bundle update && rm Gemfile.lock Gemfile"
 # Run bundle exec jekyll serve -H 0.0.0.0

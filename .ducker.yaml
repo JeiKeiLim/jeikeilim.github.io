@@ -9,4 +9,5 @@ build_arg:
     - --build-arg UID=1000
     - --build-arg GID=1000
 mount_pwd: true
+default_shell: zsh
 lastexecid: ""
