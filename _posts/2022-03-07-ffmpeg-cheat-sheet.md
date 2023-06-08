@@ -1,6 +1,6 @@
 ---
 title: "FFMPEG cheat sheets"
-last_modified_at: 2022-03-07T13:47
+last_modified_at: 2023-06-08T10:08
 categories:
   - Cheatsheet
 tags:
@@ -52,6 +52,19 @@ ffmpeg -i <input> -filter:v "crop=200:100:300:100" <output>
 # Crop Only Top of specific pixel
 ffmpeg -i <input> -filter:v "crop=iw:ih-20:0:ih" <output>
 
+```
+
+### 1.1.6 Trim Video
+
+```python
+# Trim with duration
+ffmpeg -i input.mp4 -ss 00:05:20 -t 00:10:00 output.mp4
+
+# Trim with specific time
+ffmpeg -i input.mp4 -ss 00:05:10 -to 00:15:30 output.mp4
+
+# Trim last 10 minutes
+ffmpeg -sseof -00:10:00 -i input.mp4 output.mp4
 ```
 
 ## 1.2 Advanced
