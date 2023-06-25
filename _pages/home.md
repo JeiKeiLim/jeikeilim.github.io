@@ -17,6 +17,13 @@ feature_row:
     url: "https://limjk.ai/kindle"
     btn_class: "btn--inverse"
     btn_label: "limjk.ai/kindle"
+  - image_path: https://raw.githubusercontent.com/JeiKeiLim/ducker/main/docs/imgs/ducker_icon.png
+    alt: "Ducker"
+    title: "Ducker"
+    excerpt: "Ducker the docker helper. Ducker is go language based CLI application for easier docker usage purpose."
+    url: https://github.com/JeiKeiLim/ducker
+    btn_class: "btn--inverse"
+    btn_label: "github.com/JeiKeiLim/ducker"
 ---
 
 {% include feature_row %}

@@ -35,7 +35,7 @@ RUN echo "\n# Custom settings" >> /home/user/.zshrc && \
     echo 'POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true' >> ~/.zshrc
 
 # Change default shell to zsh
-RUN sudo chsh -s /bin/zsh
+RUN sudo chsh -s /bin/zsh user
 
 # Install ruby
 RUN sudo apt-get install -y ruby-full build-essential zlib1g-dev
