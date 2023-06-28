@@ -5,10 +5,13 @@ categories:
   - Tech
 tags:
   - Linux
+  - Embedded
 ---
 
 # Why fix the tty device path?
-Usually you don't need this but if you are working on a project that uses embedded device with some peripherals, it's nice to have fixed device path since `/dev/ttyUSB0` or `/dev/ttyUSB1` can be any device. Wouldn't it be better if we have `/dev/ttyMyPort0` always be the device 0 and `/dev/ttyMyPort1` be the device 1?
+Usually you don't need this but if you are working on a project that uses embedded device with some peripherals, it's nice to have fixed device path since `/dev/ttyUSB0` or `/dev/ttyUSB1` can be any device.
+
+Wouldn't it be better if we have `/dev/ttyMyPort0` always be the device 0 and `/dev/ttyMyPort1` be the device 1?
 
 # How do I do this
 ## Finding the unique attribute
@@ -59,14 +62,23 @@ and the attributes from one single parent device.
 This will tell us device information such as which port is connected to the device. Try this command with different device paths. You will see some parameters are different ones from the another.
 In my case, I usually use `KERNELS==1-2.1:1.0` which tells me that this device is connected to `1-2.1:1.0` physical port. 
 
-## Tell linux to use fixed path that I want
+## Tell Linux to use fixed path that I want
 Once we have a unique attribute of the device, it's time to tell Linux that I want to use this device to be this path. Open `/etc/udev/rules.d/99-usb-serial.rules` with root permission and add something like below.
 
 ```shell
-SUBSYSTEM=="tty",KERNELS=="1-2.1",SYMLINK+="ttyTelem"
+KERNEL=="ttyUSB*",KERNELS=="1-2.1:1.0",SYMLINK+="ttyTelem"
 ```
 
-`SUBSYSTEM` and `KERNELS` are the unique attributes for `/dev/ttyUSB0` device. And `SYMLINK` tells Linux to make symbolic link of `/dev/ttyUSB0` to `/dev/ttyTelem`
+`KERNEL` and `KERNELS` are the unique attributes for `/dev/ttyUSB0` device. And `SYMLINK` tells Linux to make symbolic link of `/dev/ttyUSB0` to `/dev/ttyTelem`.
+You can add more attributes prior to `SYMLINK` to make better separation.
 
-And reboot your system and see if `/dev/ttyTelem` exists and it is linked to `/dev/ttyUSB0`. If it doesn't show up, the unique attributes might not be unique.
+Reboot your system or use below commands to apply these changes immediately.
+
+```shell
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+See if `/dev/ttyTelem` exists and it is linked to `/dev/ttyUSB0`.
+If it doesn't show up, the unique attributes might not be unique.
 
